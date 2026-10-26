@@ -1,0 +1,6 @@
+# Copia este archivo como android/key.properties y completa tus datos.
+# NUNCA lo subas a git ni lo compartas.
+storePassword=TU_CLAVE_DEL_KEYSTORE
+keyPassword=TU_CLAVE_DE_LA_LLAVE
+keyAlias=upload
+storeFile=C:/Users/TU_USUARIO/samai-upload-keystore.jks

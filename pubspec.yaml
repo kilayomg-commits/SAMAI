@@ -1,0 +1,49 @@
+name: samai
+description: "SAMAI — ejercicios de Terapia de Aceptación y Compromiso (ACT) para manejar ansiedad y estrés. Apoyo al bienestar, no reemplaza terapia."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+  # Estado
+  provider: ^6.1.2
+
+  # Almacenamiento local cifrado (AES-256) + llave en Android Keystore
+  hive_ce: ^2.11.0
+  hive_ce_flutter: ^2.3.0
+  flutter_secure_storage: ^9.2.2
+  crypto: ^3.0.6
+
+  # Bloqueo con PIN / biometría
+  local_auth: ^2.3.0
+
+  # Audio (segmentos concatenados + silencios)
+  just_audio: ^0.10.4
+
+  # Suscripción con Google Play Billing
+  in_app_purchase: ^3.2.0
+
+  # Gráficos, enlaces, exportación
+  fl_chart: ^0.69.0
+  url_launcher: ^6.3.1
+  share_plus: ^10.1.4
+  path_provider: ^2.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/audio/
+    - assets/legal/

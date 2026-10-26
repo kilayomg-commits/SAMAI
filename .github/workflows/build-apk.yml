@@ -1,0 +1,45 @@
+name: Compilar APK de prueba
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Completar andamiaje Android
+        run: flutter create --org pe.samai --project-name samai --platforms android .
+
+      - name: Dependencias
+        run: flutter pub get
+
+      - name: Pruebas
+        run: flutter test
+
+      - name: Compilar APK (debug, incluye modo demo Premium)
+        run: flutter build apk --debug
+
+      - name: Publicar APK para descargar desde el celular
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: SAMAI prueba ${{ github.run_number }}
+          prerelease: true
+          files: build/app/outputs/flutter-apk/app-debug.apk
