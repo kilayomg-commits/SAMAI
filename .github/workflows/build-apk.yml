@@ -35,8 +35,21 @@ jobs:
       - name: Pruebas
         run: flutter test
 
+      - name: Análisis estático (errores de Dart)
+        run: |
+          flutter analyze --no-fatal-infos --no-fatal-warnings > analyze.log 2>&1 || true
+          grep -E "error •|warning •" analyze.log | head -40 | sed 's/^/::warning::/' || true
+
       - name: Compilar APK (debug, incluye modo demo Premium)
-        run: flutter build apk --debug
+        shell: bash
+        run: |
+          set +e
+          flutter build apk --debug 2>&1 | tee build.log
+          code=${PIPESTATUS[0]}
+          if [ $code -ne 0 ]; then
+            grep -E "Error|error:|e: |What went wrong|> |FAILURE|Exception" build.log | grep -v "^\s*$" | tail -40 | sed 's/^/::error::/'
+          fi
+          exit $code
 
       - name: Publicar APK para descargar desde el celular
         uses: softprops/action-gh-release@v2
