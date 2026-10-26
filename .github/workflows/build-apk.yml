@@ -12,9 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -25,7 +25,9 @@ jobs:
           cache: true
 
       - name: Completar andamiaje Android
-        run: flutter create --org pe.samai --project-name samai --platforms android .
+        run: |
+          flutter create --org pe.samai --project-name samai --platforms android .
+          rm -f test/widget_test.dart   # prueba de ejemplo de la app contador
 
       - name: Dependencias
         run: flutter pub get

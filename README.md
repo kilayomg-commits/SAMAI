@@ -16,6 +16,7 @@ Privacidad: datos solo en el celular, cifrados AES-256 (llaves en Android Keysto
 ## Empezar
 ```bash
 flutter create --org pe.samai --project-name samai --platforms android .
+rm test/widget_test.dart
 flutter pub get
 flutter test
 flutter run

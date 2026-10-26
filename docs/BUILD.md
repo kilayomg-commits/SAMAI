@@ -11,6 +11,7 @@ El zip trae solo los archivos de Android que SAMAI personaliza (manifiesto, `Mai
 ```bash
 cd samai
 flutter create --org pe.samai --project-name samai --platforms android .
+rm test/widget_test.dart   # en Windows: del test\widget_test.dart (ejemplo que crea Flutter)
 flutter pub get
 flutter test          # pruebas del dominio: riesgo, compositor, recomendador, progreso
 ```
