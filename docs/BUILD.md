@@ -6,12 +6,13 @@
 - `flutter doctor` sin errores en la sección Android
 
 ## 1. Completar el andamiaje de Android
-El zip trae solo los archivos de Android que SAMAI personaliza (manifiesto, `MainActivity`, `build.gradle.kts`, reglas de backup). El resto (Gradle wrapper, `settings.gradle.kts`, íconos, estilos) lo genera Flutter **sin sobrescribir** lo existente:
+El proyecto trae solo los archivos de Android que SAMAI personaliza (manifiesto, `MainActivity`, reglas de backup); `build.gradle.kts` lo genera Flutter y `tool/patch_android.py` le aplica minSdk 29 y la firma de release. El resto (Gradle wrapper, `settings.gradle.kts`, íconos, estilos) lo genera Flutter **sin sobrescribir** lo existente:
 
 ```bash
 cd samai
 flutter create --org pe.samai --project-name samai --platforms android .
 rm test/widget_test.dart   # en Windows: del test\widget_test.dart (ejemplo que crea Flutter)
+python tool/patch_android.py   # minSdk 29 + firma de release
 flutter pub get
 flutter test          # pruebas del dominio: riesgo, compositor, recomendador, progreso
 ```

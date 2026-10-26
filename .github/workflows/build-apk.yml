@@ -28,6 +28,8 @@ jobs:
         run: |
           flutter create --org pe.samai --project-name samai --platforms android .
           rm -f test/widget_test.dart   # prueba de ejemplo de la app contador
+          python3 tool/patch_android.py
+          grep -nE "minSdk|signingConfig" android/app/build.gradle.kts
 
       - name: Dependencias
         run: flutter pub get

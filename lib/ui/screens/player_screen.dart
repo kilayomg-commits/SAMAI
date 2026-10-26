@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/models.dart';
 import '../../domain/session_composer.dart';
 import '../../state/app_state.dart';
 import '../widgets/common.dart';
